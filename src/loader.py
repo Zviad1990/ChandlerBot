@@ -7,24 +7,24 @@ from sklearn.neighbors import BallTree
 from sklearn.base import BaseEstimator
 from sklearn.pipeline import make_pipeline
 
-
-def prepare_data():
-    lines = pd.DataFrame()
-    for data in os.listdir("data"):
-        if data not in ['links.csv', ".keep"]:
-            temp = pd.read_csv("data/"+data)
-            temp.drop("Unnamed: 0", axis=1, inplace=True)
-            lines = lines.append(temp)
-        else:
-            pass
-    lines['context'] = lines['script'].shift(1)
-    chandler = lines[lines['friend'] == 'Chandler']
-    chandler = chandler[~chandler['context'].isnull()]
-    vector = TfidfVectorizer()
-    matrix = vector.fit_transform(chandler.context)
-    svd = TruncatedSVD(n_components=900)
-    smal_matr = svd.fit_transform(matrix)
-    return smal_matr, chandler, vector, svd
+#
+# def prepare_data():
+#     lines = pd.DataFrame()
+#     for data in os.listdir("data"):
+#         if data not in ['links.csv', ".keep"]:
+#             temp = pd.read_csv("data/"+data)
+#             temp.drop("Unnamed: 0", axis=1, inplace=True)
+#             lines = lines.append(temp)
+#         else:
+#             pass
+#     lines['context'] = lines['script'].shift(1)
+#     chandler = lines[lines['friend'] == 'Chandler']
+#     chandler = chandler[~chandler['context'].isnull()]
+#     vector = TfidfVectorizer()
+#     matrix = vector.fit_transform(chandler.context)
+#     svd = TruncatedSVD(n_components=900)
+#     smal_matr = svd.fit_transform(matrix)
+#     return smal_matr, chandler, vector, svd
 
 
 def softmax(x):
