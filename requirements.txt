@@ -1,0 +1,7 @@
+os
+numpy
+pandas
+pip
+py
+scikit-learn
+pyTelegramBotAPI
