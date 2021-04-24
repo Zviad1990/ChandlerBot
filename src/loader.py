@@ -7,18 +7,19 @@ from sklearn.neighbors import BallTree
 from sklearn.base import BaseEstimator
 from sklearn.pipeline import make_pipeline
 
-def prepare_data():
 
+def prepare_data():
     lines = pd.DataFrame()
-    for data in os.listdir("app/data"):
+    for data in os.listdir("data"):
         if data != 'links.csv':
-            temp = pd.read_csv("../data/season1_script.csv")
+            temp = pd.read_csv("data/"+data)
             temp.drop("Unnamed: 0", axis=1, inplace=True)
             lines = lines.append(temp)
         else:
             pass
     lines['context'] = lines['script'].shift(1)
-    chandler = lines[lines['friend']=='Chandler']
+    chandler = lines[lines['friend'] == 'Chandler']
+    chandler = chandler[~chandler['context'].isnull()]
     vector = TfidfVectorizer()
     matrix = vector.fit_transform(chandler.context)
     svd = TruncatedSVD(n_components=900)
