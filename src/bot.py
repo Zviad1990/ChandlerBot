@@ -1,18 +1,14 @@
 import pandas as pd
 import numpy as np
-from sklearn.pipeline import make_pipeline
-from loader import prepare_data, NeighbourCample
+import joblib
+from loader import  NeighbourCample
 from telebot import types
 from telebot.types import Message
 import telebot
 
 TG_BOT_TOKEN = ('1783843952:AAGkKSVzqjo5HlwmDDABI4t3AEcPqw54cRw')
 bot = telebot.TeleBot(TG_BOT_TOKEN)
-
-smal_matr, chandler, vector, svd = prepare_data()
-ns = NeighbourCample()
-ns.fit(smal_matr, chandler.script)
-pipe = make_pipeline(vector, svd, ns)
+pipe = joblib.load('pipeline.pkl')
 
 @bot.message_handler(commands=['start'])
 def start(m):
