@@ -10,7 +10,7 @@ from sklearn.pipeline import make_pipeline
 def prepare_data():
 
     lines = pd.DataFrame()
-    for data in os.listdir("../data"):
+    for data in os.listdir("app/data"):
         if data != 'links.csv':
             temp = pd.read_csv("../data/season1_script.csv")
             temp.drop("Unnamed: 0", axis=1, inplace=True)
