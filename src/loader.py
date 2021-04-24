@@ -11,7 +11,7 @@ from sklearn.pipeline import make_pipeline
 def prepare_data():
     lines = pd.DataFrame()
     for data in os.listdir("data"):
-        if data != 'links.csv':
+        if data not in ['links.csv', ".keep"]:
             temp = pd.read_csv("data/"+data)
             temp.drop("Unnamed: 0", axis=1, inplace=True)
             lines = lines.append(temp)
