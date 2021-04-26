@@ -4,7 +4,7 @@ from telebot import types
 from telebot.types import Message
 import telebot
 
-TG_BOT_TOKEN = ('1783843952:AAGkKSVzqjo5HlwmDDABI4t3AEcPqw54cRw')
+TG_BOT_TOKEN = ("token")
 bot = telebot.TeleBot(TG_BOT_TOKEN)
 pipe = joblib.load('pipeline.pkl')
 
