@@ -1,7 +1,5 @@
-import pandas as pd
-import numpy as np
 import joblib
-from loader import  NeighbourCample
+from loader import NeighbourCample
 from telebot import types
 from telebot.types import Message
 import telebot
@@ -9,6 +7,7 @@ import telebot
 TG_BOT_TOKEN = ('1783843952:AAGkKSVzqjo5HlwmDDABI4t3AEcPqw54cRw')
 bot = telebot.TeleBot(TG_BOT_TOKEN)
 pipe = joblib.load('pipeline.pkl')
+
 
 @bot.message_handler(commands=['start'])
 def start(m):
